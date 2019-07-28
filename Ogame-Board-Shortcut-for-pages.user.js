@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Ogame Board: Shortcut for pages
-// @namespace    http://tampermonkey.net/
+// @namespace    https://openuserjs.org/scripts/Choubakawa/Ogame_Board_Shortcut_for_pages
 // @version      0.2
 // @description  Add links to pages under topic name
 // @author       Choubakawa
