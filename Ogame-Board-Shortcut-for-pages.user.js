@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Ogame Board: Shortcut for pages
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @description  Add links to pages under topic name
 // @author       Choubakawa
 // @include      https://board.*.ogame.gameforge.com*
@@ -68,6 +68,9 @@ function pages() {
                         pageMiddle.setAttribute( "base", subjects[j] );
                         pageMiddle.addEventListener( "click", function() {
                             let page = prompt( lang.prompt );
+                            if( page == null ) {
+                            	return;
+                            }
                             if( !isNaN( page ) ) {
                                 window.location = this.getAttribute( "base" ) + "&pageNo=" + page;
                             }
