@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Ogame Board: Shortcut for pages
 // @namespace    https://openuserjs.org/scripts/Choubakawa/Ogame_Board_Shortcut_for_pages
-// @version      0.2
+// @version      0.3
 // @description  Add links to pages under topic name
 // @author       Choubakawa
 // @include      https://board.*.ogame.gameforge.com*
@@ -68,9 +68,10 @@ function pages() {
                         pageMiddle.setAttribute( "base", subjects[j] );
                         pageMiddle.addEventListener( "click", function() {
                             let page = prompt( lang.prompt );
-                            if( page == null ) {
+                            if( page == null || page.trim() == "" ) {
                             	return;
                             }
+                            page = page.trim();
                             if( !isNaN( page ) ) {
                                 window.location = this.getAttribute( "base" ) + "&pageNo=" + page;
                             }
