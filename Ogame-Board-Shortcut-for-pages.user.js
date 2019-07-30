@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Ogame Board: Shortcut for pages
 // @namespace    https://openuserjs.org/scripts/Choubakawa/Ogame_Board_Shortcut_for_pages
-// @version      0.3
+// @version      0.4
 // @description  Add links to pages under topic name
 // @author       Choubakawa
 // @include      https://board.*.ogame.gameforge.com*
@@ -18,12 +18,14 @@ let lang = {};
 if( window.location.href.indexOf( "https://board.fr" ) > -1 ) {
     lang = {
         prompt : "Entrer le numéro de la page",
-        page : "Aller à la page : "
+        page : "Aller à la page : ",
+        lastPost: "Voir le dernier message"
     }
 } else {
     lang = {
         prompt : "Enter the page number",
-        page : "Go to the page : "
+        page : "Go to the page : ",
+        lastPost: "See the last post"
     }
 }
 
@@ -80,7 +82,7 @@ function pages() {
                     }
 
                     let pageLast = document.createElement( "a" );
-                    pageLast.setAttribute( "href", subjects[j] + "&pageNo=" + responsesPageNumber[j].lastPage )
+                    pageLast.setAttribute( "href", subjects[j] + "&pageNo=" + responsesPageNumber[j].lastPage );
                     pageLast.appendChild( document.createTextNode( " " + responsesPageNumber[j].lastPage ) );
                     pagination.appendChild( pageLast );
 
@@ -89,6 +91,18 @@ function pages() {
 
                     infos[j].appendChild( elementPage );
                 }
+                let elementLastPost = document.createElement( "li" );
+                elementLastPost.setAttribute( "class", "messageGroupLastPost" );
+
+                let lastPost = document.createElement( "span" );
+                lastPost.setAttribute( "class", "icon fa-chevron-right" );
+                let lastPostLink = document.createElement( "a" );
+                lastPostLink.setAttribute( "href", subjects[j] + "&action=lastPost" );
+                lastPostLink.setAttribute( "title", lang.lastPost );
+
+                lastPostLink.appendChild( lastPost );
+                elementLastPost.appendChild( lastPostLink );
+                infos[j].appendChild( elementLastPost );
             }
         }
     }
